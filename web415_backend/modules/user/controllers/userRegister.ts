@@ -3,11 +3,12 @@ import usersModel from "../../../models/users.model";
 import bcrypt from "bcrypt";
 
 const userRegister = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   try {
     if (!email) throw "Email is required!";
     if (!password) throw "Password is required!";
+    if (!name) throw "Name is required!";
 
     const getEmail = await usersModel.findOne({
       email: email,
@@ -25,6 +26,7 @@ const userRegister = async (req: Request, res: Response) => {
     await usersModel.create({
       email,
       password: hashedPassword,
+      name,
     });
 
     res.status(200).json({

@@ -2,6 +2,7 @@ import express from "express";
 import userRouter from "./modules/user/user.routes";
 import mongoose from "mongoose";
 import cors from "cors";
+import invoicesRouter from "./modules/invoices/invoices.routes";
 
 require("dotenv").config();
 
@@ -20,3 +21,5 @@ server.listen(8000, async () => {
 });
 
 server.use("/user", userRouter);
+// for invoice generator project..
+server.use("/invoices", invoicesRouter);
